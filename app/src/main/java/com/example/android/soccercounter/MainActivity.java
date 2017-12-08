@@ -1,6 +1,7 @@
 package com.example.android.soccercounter;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -13,8 +14,9 @@ public class MainActivity extends AppCompatActivity {
     int shotsTeamB = 0;
     int foulsTeamA = 0;
     int foulsTeamB = 0;
-    int offsidesTeamA = 0;
-    int offsidesTeamB = 0;
+    int shotsOnTargetTeamA = 0;
+    int shotsOnTargetTeamB = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +41,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
+    display Goal for Team A
+     */
+    private void displayGoalForA(final int score) {
+        final TextView scoreTeam = (TextView) findViewById(R.id.team_a_score);
+        new CountDownTimer(1000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                scoreTeam.setText("Goal!!!");
+            }
+
+            public void onFinish() {
+                scoreTeam.setText(String.valueOf(score));
+            }
+        }.start();
+    }
+
+    /*
+    display Goal for Team B
+     */
+    private void displayGoalForB(final int score) {
+        final TextView scoreTeam = (TextView) findViewById(R.id.team_b_score);
+        new CountDownTimer(1000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                scoreTeam.setText("Goal!!!");
+            }
+
+            public void onFinish() {
+                scoreTeam.setText(String.valueOf(score));
+            }
+        }.start();
+    }
+
+    /*
     adds goal for Team A - when Goal button clicked
+    adds also shots and shots on target
      */
     public void addGoalA(View view) {
         scoreTeamA++;
-        displayScoreTeamA(scoreTeamA);
+        addShotOnTargetA(view);
+        displayGoalForA(scoreTeamA);
     }
 
     /*
     adds goal for Team B - when Goal button clicked
+    adds also shots and shots on target
      */
     public void addGoalB(View view) {
         scoreTeamB++;
-        displayScoreTeamB(scoreTeamB);
+        addShotOnTargetB(view);
+        displayGoalForB(scoreTeamB);
     }
 
     /*
@@ -87,39 +127,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    displays number of offside of Team A
+    displays number of shotsOnTarget of Team A
      */
-    private void displayOffsidesTeamA(int offsides) {
-        TextView offsidesTeam = (TextView) findViewById(R.id.team_a_offsides);
-        offsidesTeam.setText(String.valueOf(offsides));
+    private void displayShotsOnTargetTeamA(int shotsOnTarget) {
+        TextView shotsOnTargetTV = (TextView) findViewById(R.id.team_a_shots_on_target);
+        shotsOnTargetTV.setText(String.valueOf(shotsOnTarget));
     }
 
     /*
-    displays number of offside of Team B
+    displays number of shotsOnTarget of Team B
      */
-    private void displayOffsidesTeamB(int offsides) {
-        TextView offsidesTeam = (TextView) findViewById(R.id.team_b_offsides);
-        offsidesTeam.setText(String.valueOf(offsides));
+    private void displayShotsOnTargetTeamB(int shotsOnTarget) {
+        TextView shotsOnTargetTV = (TextView) findViewById(R.id.team_b_shots_on_target);
+        shotsOnTargetTV.setText(String.valueOf(shotsOnTargetTeamB));
     }
 
     /*
-    adds offsides for Team A
+    adds shotsOnTarget and shots for Team A
      */
-    public void addOffsideA(View view) {
-        offsidesTeamA++;
-        displayOffsidesTeamA(offsidesTeamA);
+    public void addShotOnTargetA(View view) {
+        shotsOnTargetTeamA++;
+        shotsTeamA++;
+        displayShotsTeamA(shotsTeamA);
+        displayShotsOnTargetTeamA(shotsOnTargetTeamA);
     }
 
     /*
-    adds offsides for Team B
+    adds shotsOnTarget and shots  for Team B
     */
-    public void addOffsidesB(View view) {
-        offsidesTeamB++;
-        displayOffsidesTeamB(offsidesTeamB);
+    public void addShotOnTargetB(View view) {
+        shotsOnTargetTeamB++;
+        shotsTeamB++;
+        displayShotsTeamB(shotsTeamB);
+        displayShotsOnTargetTeamB(shotsOnTargetTeamB);
     }
 
     /*
-    displays number of offside of Team A
+    displays number of fouls of Team A
      */
     private void displayFoulsTeamA(int fouls) {
         TextView foulsTeam = (TextView) findViewById(R.id.team_a_fouls);
@@ -127,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    displays number of offside of Team B
+    displays number of fouls of Team B
      */
     private void displayFoulsTeamB(int fouls) {
         TextView foulsTeam = (TextView) findViewById(R.id.team_b_fouls);
@@ -148,5 +192,29 @@ public class MainActivity extends AppCompatActivity {
     public void addFoulB(View view) {
         foulsTeamB++;
         displayFoulsTeamB(foulsTeamB);
+    }
+
+    /*
+    Resets all statistics.
+     */
+    public void resetAllStats(View view) {
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+        shotsTeamA = 0;
+        shotsTeamB = 0;
+        foulsTeamA = 0;
+        foulsTeamB = 0;
+        shotsOnTargetTeamA = 0;
+        shotsOnTargetTeamB = 0;
+
+        displayScoreTeamA(scoreTeamA);
+        displayScoreTeamB(scoreTeamB);
+        displayShotsTeamA(shotsTeamA);
+        displayShotsTeamB(shotsTeamB);
+        displayShotsOnTargetTeamA(shotsOnTargetTeamA);
+        displayShotsOnTargetTeamB(shotsOnTargetTeamB);
+        displayFoulsTeamA(foulsTeamA);
+        displayFoulsTeamB(foulsTeamB);
+
     }
 }
