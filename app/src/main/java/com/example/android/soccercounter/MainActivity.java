@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,13 +46,22 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayGoalForA(final int score) {
         final TextView scoreTeam = (TextView) findViewById(R.id.team_a_score);
+        final Button button = (Button) findViewById(R.id.button_goal_a);
+
+        /*
+        displays goal! for a second, and disables button for that time
+         */
         new CountDownTimer(1000, 500) {
 
             public void onTick(long millisUntilFinished) {
+                button.setEnabled(false);
+                scoreTeam.setTextSize(44);
                 scoreTeam.setText("Goal!!!");
             }
 
             public void onFinish() {
+                button.setEnabled(true);
+                scoreTeam.setTextSize(64);
                 scoreTeam.setText(String.valueOf(score));
             }
         }.start();
@@ -62,13 +72,18 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayGoalForB(final int score) {
         final TextView scoreTeam = (TextView) findViewById(R.id.team_b_score);
+        final Button button = (Button) findViewById(R.id.button_goal_b);
         new CountDownTimer(1000, 500) {
 
             public void onTick(long millisUntilFinished) {
+                button.setEnabled(false);
+                scoreTeam.setTextSize(44);
                 scoreTeam.setText("Goal!!!");
             }
 
             public void onFinish() {
+                button.setEnabled(true);
+                scoreTeam.setTextSize(64);
                 scoreTeam.setText(String.valueOf(score));
             }
         }.start();

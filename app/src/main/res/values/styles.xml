@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Primary theme color of the app (sets background color of app bar) -->
-        <item name="colorPrimary">@android:color/holo_green_light</item>
+        <item name="colorPrimary">@android:color/holo_green_dark</item>
         <!-- Background color of buttons in the app -->
         <item name="colorButtonNormal">@android:color/darker_gray</item>
     </style>
