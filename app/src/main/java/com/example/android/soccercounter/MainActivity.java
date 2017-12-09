@@ -13,10 +13,10 @@ public class MainActivity extends AppCompatActivity {
     int scoreTeamB = 0;
     int shotsTeamA = 0;
     int shotsTeamB = 0;
-    int foulsTeamA = 0;
-    int foulsTeamB = 0;
     int shotsOnTargetTeamA = 0;
     int shotsOnTargetTeamB = 0;
+    int foulsTeamA = 0;
+    int foulsTeamB = 0;
 
 
     @Override
@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
     private void displayGoalForB(final int score) {
         final TextView scoreTeam = (TextView) findViewById(R.id.team_b_score);
         final Button button = (Button) findViewById(R.id.button_goal_b);
+
+        /*
+        displays goal! for a second, and disables button for that time
+         */
         new CountDownTimer(1000, 500) {
 
             public void onTick(long millisUntilFinished) {
@@ -217,10 +221,11 @@ public class MainActivity extends AppCompatActivity {
         scoreTeamB = 0;
         shotsTeamA = 0;
         shotsTeamB = 0;
-        foulsTeamA = 0;
-        foulsTeamB = 0;
         shotsOnTargetTeamA = 0;
         shotsOnTargetTeamB = 0;
+        foulsTeamA = 0;
+        foulsTeamB = 0;
+
 
         displayScoreTeamA(scoreTeamA);
         displayScoreTeamB(scoreTeamB);
