@@ -69,9 +69,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
 
 
                 <TextView
@@ -135,8 +135,7 @@
                         android:layout_marginRight="8dp"
                         android:onClick="addGoalA"
                         android:text="goal!!!"
-                        android:textColor="@android:color/white"
-                        />
+                        android:textColor="@android:color/white" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
