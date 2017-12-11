@@ -5,6 +5,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,6 +66,83 @@ public class MainActivity extends AppCompatActivity {
                 scoreTeam.setText(String.valueOf(score));
             }
         }.start();
+    }
+
+    /*
+    display Goal for Team A when ImageButton clcicked
+     */
+    private void displayGoalForAImage(final int score) {
+        final TextView scoreTeam = (TextView) findViewById(R.id.team_a_score);
+        final ImageButton button = (ImageButton) findViewById(R.id.button_goal_a);
+
+        /*
+        displays goal! for a second, and disables button for that time
+         */
+        new CountDownTimer(1000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                button.setEnabled(false);
+                scoreTeam.setTextSize(44);
+                scoreTeam.setPadding(0, 0, 0, 0);
+                scoreTeam.setText("Goal!!!");
+            }
+
+            public void onFinish() {
+                button.setEnabled(true);
+                scoreTeam.setPadding(0, 0, 40, 0);
+                scoreTeam.setTextSize(64);
+                scoreTeam.setText(String.valueOf(score));
+            }
+        }.start();
+    }
+
+    /*
+    adds goal for Team A - when Goal ImagBbutton clicked
+    adds also shots and shots on target
+     */
+    public void addGoalAImage(View view) {
+        scoreTeamA++;
+        addShotOnTargetA(view);
+        displayGoalForAImage(scoreTeamA);
+    }
+
+    /*
+    display Goal for Team B when ImageButton clcicked
+     */
+    private void displayGoalForBImage(final int score) {
+        final TextView scoreTeam = (TextView) findViewById(R.id.team_b_score);
+        final ImageButton button = (ImageButton) findViewById(R.id.button_goal_b);
+
+        /*
+        displays goal! for a second, and disables button for that time
+         */
+        new CountDownTimer(1000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                button.setEnabled(false);
+                scoreTeam.setTextSize(44);
+                scoreTeam.setPadding(0, 0, 0, 0);
+                scoreTeam.setText("Goal!!!");
+
+            }
+
+            public void onFinish() {
+                button.setEnabled(true);
+                scoreTeam.setTextSize(64);
+                scoreTeam.setPadding(40, 0, 0, 0);
+                scoreTeam.setText(String.valueOf(score));
+            }
+        }.start();
+    }
+
+    /*
+    adds goal for Team A - when Goal ImagBbutton clicked
+    adds also shots and shots on target
+     */
+    public void addGoalBImage(View view) {
+        scoreTeamB++;
+        addShotOnTargetB(view);
+        displayGoalForBImage(scoreTeamB);
     }
 
     /*
