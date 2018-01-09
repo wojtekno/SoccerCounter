@@ -26,6 +26,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scoreTeamA", scoreTeamA);
+        outState.putInt("scoreTeamB", scoreTeamB);
+        outState.putInt("shotsTeamA", shotsTeamA);
+        outState.putInt("shotsTeamB", shotsTeamB);
+        outState.putInt("shotsOnTargetTeamA", shotsOnTargetTeamA);
+        outState.putInt("shotsOnTargetTeamB", shotsOnTargetTeamB);
+        outState.putInt("foulsTeamA", foulsTeamA);
+        outState.putInt("foulsTeamB", foulsTeamB);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        scoreTeamA = savedInstanceState.getInt("scoreTeamA");
+        scoreTeamB = savedInstanceState.getInt("scoreTeamB");
+        shotsTeamA = savedInstanceState.getInt("shotsTeamA");
+        shotsTeamB = savedInstanceState.getInt("shotsTeamB");
+        shotsOnTargetTeamA = savedInstanceState.getInt("shotsOnTargetTeamA");
+        shotsOnTargetTeamB = savedInstanceState.getInt("shotsOnTargetTeamB");
+        foulsTeamA = savedInstanceState.getInt("foulsTeamA");
+        foulsTeamB = savedInstanceState.getInt("foulsTeamB");
+
+        displayAll();
+    }
+
     /*
     displays score of Team A
      */
@@ -292,6 +320,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
+    display all scores
+     */
+    public void displayAll() {
+        displayScoreTeamA(scoreTeamA);
+        displayScoreTeamB(scoreTeamB);
+        displayShotsTeamA(shotsTeamA);
+        displayShotsTeamB(shotsTeamB);
+        displayShotsOnTargetTeamA(shotsOnTargetTeamA);
+        displayShotsOnTargetTeamB(shotsOnTargetTeamB);
+        displayFoulsTeamA(foulsTeamA);
+        displayFoulsTeamB(foulsTeamB);
+    }
+    /*
     Resets all statistics.
      */
     public void resetAllStats(View view) {
@@ -304,15 +345,16 @@ public class MainActivity extends AppCompatActivity {
         foulsTeamA = 0;
         foulsTeamB = 0;
 
+        displayAll();
 
-        displayScoreTeamA(scoreTeamA);
-        displayScoreTeamB(scoreTeamB);
-        displayShotsTeamA(shotsTeamA);
-        displayShotsTeamB(shotsTeamB);
-        displayShotsOnTargetTeamA(shotsOnTargetTeamA);
-        displayShotsOnTargetTeamB(shotsOnTargetTeamB);
-        displayFoulsTeamA(foulsTeamA);
-        displayFoulsTeamB(foulsTeamB);
+//        displayScoreTeamA(scoreTeamA);
+//        displayScoreTeamB(scoreTeamB);
+//        displayShotsTeamA(shotsTeamA);
+//        displayShotsTeamB(shotsTeamB);
+//        displayShotsOnTargetTeamA(shotsOnTargetTeamA);
+//        displayShotsOnTargetTeamB(shotsOnTargetTeamB);
+//        displayFoulsTeamA(foulsTeamA);
+//        displayFoulsTeamB(foulsTeamB);
 
     }
 }
